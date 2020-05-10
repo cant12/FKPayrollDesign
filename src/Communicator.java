@@ -2,9 +2,9 @@ import java.util.*;
 
 public interface Communicator
 {
-	Date get_date();
+	public Date get_date();
 
-	void set_date(Date date);
+	public void set_date(Date date);
 
 	void add_employee(Employee emp);
 
@@ -14,7 +14,25 @@ public interface Communicator
 
 	boolean check_login(String username, String password);
 
-	void post_sale_record(int id, double sales, Date date);
+	void post_time_card(TimeCard tc);
 
-	void post_time_card(int id, int hours, Date date);
+	void post_sale_record(SaleRecord sr);
+
+	void post_union_report(UnionReport ur);
+
+	ArrayList<TimeCard> get_timecards_of(Employee emp, Date date);
+
+	ArrayList<TimeCard> get_timecards_of(Employee emp);
+
+	ArrayList<SalesRecord> get_salesrecords_of(Employee emp, Date date);
+
+	ArrayList<SalesRecord> get_salesrecords_of(Employee emp);
+
+	void make_transaction(Transaction trans);
+
+	ArrayList<Transaction> get_all_transactions_of(Employee emp, Date date);
+
+	ArrayList<Transaction> get_all_transactions_of(Employee emp);
+
+	Date get_last_transaction_date_of(Employee emp);
 }
