@@ -4,7 +4,7 @@ class Date
 {
 	private int day,month,year,today;	
 	private int[] last_days = {31,28,31,30,31,30,31,31,30,31,30,31};
-	private static final String[] days = {"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
+	private static final String[] days = {"Mon","Tue","Wed","Thu","Fri","Sat","Sun","-NA-"};
 	private static final Map<String,Integer> days_map = Map.of("Mon",0,"Tue",1,"Wed",2,"Thu",3,"Fri",4,"Sat",5,"Sun",6);
 
 	Date(int day, int month, int year, String today)
@@ -12,7 +12,10 @@ class Date
 		this.day = day;
 		this.month = month;
 		this.year = year;
-		this.today = days_map.get(today);
+		if(days_map.containsKey(today))
+			this.today = days_map.get(today);
+		else
+			this.today = 7;
 		if(year%400==0 || (year%100!=0 && year%4==0))//leap year
 			last_days[1] = 29;
 	}
@@ -26,6 +29,8 @@ class Date
 	String get_today(){return days[today];}
 
 	boolean is_last_day(){return day == last_days[month-1];}
+
+	String to_string(){return month+"."+day+"."+year;} 
 
 	void inc_day()
 	{

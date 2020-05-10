@@ -15,7 +15,7 @@ create table Employees
 	Monthly real,
 	Incentive real,
 	Method_of_Payment text,
-	Union_Memborship boolean
+	Union_Membership boolean
 );
 
 create table Union_report
@@ -40,10 +40,11 @@ create table Transactions
 (
 	Date timestamp,
 	Money_Transfered real,
-	Employee_ID int 
+	Employee_ID int,
+	Method_of_Payment text
 );
 
 insert into constants (Date,Day) values ('5.10.2020','Sun');
-insert into Employees (Employee_ID,Name,Password,Date_of_joining) values (0,'ADMIN','admin1234','10.5.2020');	
+insert into Employees (Employee_ID,Name,Password,Date_of_joining) values (0,'ADMIN','admin1234','5.10.2020');	
 
 -- update constants set date = '5.10.2020', day = 'Sun';	
