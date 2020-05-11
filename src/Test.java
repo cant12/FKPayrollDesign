@@ -10,8 +10,8 @@ class Test
 		String password = "HVH";	
 		Communicator comm = new SqlComm(url,username,password);
 		Date date = comm.get_date();
-		// date.inc_day();
-		// comm.set_date(date);
+		date.inc_day();
+		comm.set_date(date);
 		// date = comm.get_date();
 		// while(true)
 		// {
@@ -48,16 +48,12 @@ class Test
 		// Transaction trans = new Transaction(date,4000,emp.get_id(),emp.get_method_of_payment());
 		// comm.make_transaction(trans);
 
-		Date date_1 = new Date(9,5,2020,"");
-		ArrayList<UnionReport> tcs = comm.get_union_reports(date_1);
+		// Date date_1 = new Date(17,5,2020,"");
+		Payroll proll = new Payroll(comm);
+		ArrayList<Transaction> tcs = proll.run_payroll();
 
-		for(UnionReport tc : tcs)
-			System.out.println(tc.get_date().to_string()+" "+tc.get_event()+" "+tc.get_fee());
-
-		date_1 = comm.get_last_transaction_date_of(3);
-
-		if(date_1!=null)
-			System.out.println(date_1.to_string());
+		for(Transaction tc : tcs)
+			System.out.println(tc.get_date().to_string()+" "+date.get_today()+" "+tc.get_employee_id()+" "+tc.get_amount()+" "+tc.get_mode());
 
 		comm.close();
 	}

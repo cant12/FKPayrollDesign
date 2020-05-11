@@ -95,7 +95,7 @@ class SqlComm implements Communicator
 	{
 		try
 		{
-			ResultSet rs = stmt.executeQuery("select employee_id from employees");
+			ResultSet rs = stmt.executeQuery("select employee_id from employees where employee_id != 0");
 			ArrayList<Integer> answer = new ArrayList<Integer>();
 			while(rs.next())
 			{
@@ -160,6 +160,20 @@ class SqlComm implements Communicator
 			stmt.executeUpdate(update_statement);
 		}
 		catch(Exception e){System.out.println(e);}	
+	}
+
+	public double get_membership_fee_per_week()
+	{
+		try
+		{
+			ResultSet rs = stmt.executeQuery("select union_membership_fee_per_week from constants");
+			rs.next();
+			double ans = rs.getDouble(1);
+			rs.close();
+			return ans;
+		}
+		catch(Exception e){System.out.println(e);}
+		return -1;
 	}
 
 	public ArrayList<TimeCard> get_timecards_of(int id, Date date)
@@ -239,6 +253,24 @@ class SqlComm implements Communicator
 		try
 		{
 			ResultSet rs = stmt.executeQuery("select * from unionreports where date_of_event > \'"+date.to_string()+"\'");
+			ArrayList<UnionReport> answer = new ArrayList<UnionReport>();
+			while(rs.next())
+			{
+				UnionReport temp = new UnionReport(string_to_date(rs.getString(1),""),rs.getString(2),rs.getDouble(3));
+				answer.add(temp);
+			}
+			rs.close();
+			return answer;
+		}
+		catch(Exception e){System.out.println(e);}	
+		return null;
+	}
+
+	public ArrayList<UnionReport> get_union_reports()
+	{
+		try
+		{
+			ResultSet rs = stmt.executeQuery("select * from unionreports");
 			ArrayList<UnionReport> answer = new ArrayList<UnionReport>();
 			while(rs.next())
 			{

@@ -24,6 +24,8 @@ public interface Communicator
 
 	public void set_membership_fee_per_week(double fee);
 
+	public double get_membership_fee_per_week();
+
 	public default ArrayList<TimeCard> get_timecards_of(int id, Date date){return null;}
 
 	public ArrayList<TimeCard> get_timecards_of(int id);
@@ -32,7 +34,9 @@ public interface Communicator
 
 	public ArrayList<SalesRecord> get_salesrecords_of(int id);
 
-	public ArrayList<UnionReport> get_union_reports(Date date);
+	public default ArrayList<UnionReport> get_union_reports(Date date){return null;};
+
+	public ArrayList<UnionReport> get_union_reports();
 
 	public void make_transaction(Transaction trans);
 
