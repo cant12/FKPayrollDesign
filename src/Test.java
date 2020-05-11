@@ -8,8 +8,8 @@ class Test
 		String url = "jdbc:postgresql://localhost:5432/fkpayroll";
 		String username = "postgres";
 		String password = "HVH";	
-		SqlComm comm = new SqlComm(url,username,password);
-		// Date date = comm.get_date();
+		Communicator comm = new SqlComm(url,username,password);
+		Date date = comm.get_date();
 		// date.inc_day();
 		// comm.set_date(date);
 		// date = comm.get_date();
@@ -22,12 +22,43 @@ class Test
 		// 		break;
 		// 	// date.inc_day();
 		// }
-		// Employee emp = new Employee(-1,"Vikki","vik32",null,700,-1,0,"Bank",true);
-		Employee emp = comm.get_employee(3);
-		emp.set_name("MacBoy");
-		emp.set_password("vik333");
-		comm.update_employee(emp);
-		System.out.println(emp.get_name()+" "+emp.get_monthly());
+		// Employee emp = new Employee(-1,"Mac","mac13",null,-1,50000,10,"card",false);
+		// Employee emp = comm.get_employee(4);
+		// emp.set_name("MacBoy");
+		// emp.set_password("mac333");
+		// comm.update_employee(emp);
+		// System.out.println(emp.get_name()+" "+emp.get_monthly());
+
+		// System.out.println(comm.check_login(3,"vik333"));
+
+		// date.inc_day();
+		// comm.set_date(date);
+		// SalesRecord sc = new SalesRecord(date,3,1200);
+		// comm.post_sales_record(sc);
+
+		// SalesRecord sr = new SalesRecord(date,3,1000);
+		// comm.post_sales_record(sr);
+
+		// UnionReport ur = new UnionReport(date,"Festember",300);
+		// comm.post_union_report(ur);
+
+		// comm.set_membership_fee_per_week(500);
+
+		// Employee emp = comm.get_employee(3);
+		// Transaction trans = new Transaction(date,4000,emp.get_id(),emp.get_method_of_payment());
+		// comm.make_transaction(trans);
+
+		Date date_1 = new Date(9,5,2020,"");
+		ArrayList<UnionReport> tcs = comm.get_union_reports(date_1);
+
+		for(UnionReport tc : tcs)
+			System.out.println(tc.get_date().to_string()+" "+tc.get_event()+" "+tc.get_fee());
+
+		date_1 = comm.get_last_transaction_date_of(3);
+
+		if(date_1!=null)
+			System.out.println(date_1.to_string());
+
 		comm.close();
 	}
 }

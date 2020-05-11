@@ -2,7 +2,7 @@ create table Constants
 (
 	Date timestamp,
 	Day text,
-	Union_Mebership_Fee real
+	Union_Membership_Fee_Per_Week real
 );
 
 create table Employees
@@ -18,28 +18,31 @@ create table Employees
 	Union_Membership boolean
 );
 
-create table Union_report
+create table Unionreports
 (
-	Due_Date timestamp,
+	Date_Of_Event timestamp,
+	Event text,
 	Charges_Per_Member real
 );
 
 create table Timecards
 (
 	Date timestamp,
+	Employee_ID int,
 	Hours_worked int
 );
 
-create table Salesreports
+create table Salesrecords
 (
 	Date timestamp,
-	Value_Sold real
+	Employee_ID int,
+	Sales real
 );
 
 create table Transactions
 (
 	Date timestamp,
-	Money_Transfered real,
+	Money_Transferred real,
 	Employee_ID int,
 	Method_of_Payment text
 );

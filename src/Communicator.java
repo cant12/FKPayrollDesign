@@ -12,27 +12,35 @@ public interface Communicator
 
 	public void update_employee(Employee emp);
 
-	// boolean check_login(String username, String password);
+	public ArrayList<Integer> get_all_employee_ids();
 
-	// void post_time_card(TimeCard tc);
+	public boolean check_login(int id, String password);
 
-	// void post_sale_record(SaleRecord sr);
+	public void post_time_card(TimeCard tc);
 
-	// void post_union_report(UnionReport ur);
+	public void post_sales_record(SalesRecord sr);
 
-	// ArrayList<TimeCard> get_timecards_of(Employee emp, Date date);
+	public void post_union_report(UnionReport ur);
 
-	// ArrayList<TimeCard> get_timecards_of(Employee emp);
+	public void set_membership_fee_per_week(double fee);
 
-	// ArrayList<SalesRecord> get_salesrecords_of(Employee emp, Date date);
+	public default ArrayList<TimeCard> get_timecards_of(int id, Date date){return null;}
 
-	// ArrayList<SalesRecord> get_salesrecords_of(Employee emp);
+	public ArrayList<TimeCard> get_timecards_of(int id);
 
-	// void make_transaction(Transaction trans);
+	public default ArrayList<SalesRecord> get_salesrecords_of(int id, Date date){return null;}
 
-	// ArrayList<Transaction> get_all_transactions_of(Employee emp, Date date);
+	public ArrayList<SalesRecord> get_salesrecords_of(int id);
 
-	// ArrayList<Transaction> get_all_transactions_of(Employee emp);
+	public ArrayList<UnionReport> get_union_reports(Date date);
 
-	// Date get_last_transaction_date_of(Employee emp);
+	public void make_transaction(Transaction trans);
+
+	public default ArrayList<Transaction> get_transactions_of(int id, Date date){return null;}
+
+	public ArrayList<Transaction> get_transactions_of(int id);
+
+	public Date get_last_transaction_date_of(int id);
+
+	public void close();
 }
